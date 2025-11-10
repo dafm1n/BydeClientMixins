@@ -1,0 +1,8 @@
+{
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "verbose": true,
+  "package": "instance.bydeclient.dev.BydeClient.mixins",
+  "refmap": "mixins.BydeClient.refmap.json",
+  "mixins": []
+}
