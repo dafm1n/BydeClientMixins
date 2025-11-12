@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 TweakOrder: 0
-MixinConfigs: mixins.BydeClient.json
-TweakClass: instance.bydeclient.dev.BydeClient.mixins.BydeClientTweake
- r
+MixinConfigs: mixins.bydeclient.json
+TweakClass: instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClient
+ Tweaker
 

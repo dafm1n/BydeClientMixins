@@ -1,8 +1,17 @@
 {
   "required": true,
+  "minVersion": "0.7",
+  "package": "instance.bydeclient.dev.BydeClient.mixin.mixins",
   "compatibilityLevel": "JAVA_8",
-  "verbose": true,
-  "package": "instance.bydeclient.dev.BydeClient.mixins",
-  "refmap": "mixins.BydeClient.refmap.json",
-  "mixins": []
+  "mixins": [
+    "Mixin.MixinRender",
+    "Mixin.MixinGuiIngame",
+    "Mixin.MixinGuiChat",
+    "Mixin.MixinMinecraft",
+    "Mixin.MixinMinecraftShutdown",
+    "Mixin.MixinPlayerCape"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

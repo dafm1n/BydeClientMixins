@@ -1,0 +1,55 @@
+{
+  "mappings": {
+    "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinRender": {
+      "doRender": "Lbiv;a(Lpk;DDDFF)V"
+    },
+    "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinMinecraftShutdown": {
+      "shutdown": "Lave;m()V"
+    },
+    "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinMinecraft": {
+      "runTick": "Lave;s()V"
+    },
+    "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinGuiChat": {
+      "keyTyped": "Lawv;a(CI)V"
+    },
+    "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinGuiIngame": {
+      "renderGameOverlay": "Lavo;a(F)V"
+    }
+  },
+  "data": {
+    "notch": {
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinRender": {
+        "doRender": "Lbiv;a(Lpk;DDDFF)V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinMinecraftShutdown": {
+        "shutdown": "Lave;m()V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinMinecraft": {
+        "runTick": "Lave;s()V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinGuiChat": {
+        "keyTyped": "Lawv;a(CI)V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinGuiIngame": {
+        "renderGameOverlay": "Lavo;a(F)V"
+      }
+    },
+    "searge": {
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinRender": {
+        "doRender": "Lnet/minecraft/client/renderer/entity/Render;func_76986_a(Lnet/minecraft/entity/Entity;DDDFF)V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinMinecraftShutdown": {
+        "shutdown": "Lnet/minecraft/client/Minecraft;func_71400_g()V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinMinecraft": {
+        "runTick": "Lnet/minecraft/client/Minecraft;func_71407_l()V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinGuiChat": {
+        "keyTyped": "Lnet/minecraft/client/gui/GuiChat;func_73869_a(CI)V"
+      },
+      "instance/bydeclient/dev/BydeClient/mixin/mixins/Mixin/MixinGuiIngame": {
+        "renderGameOverlay": "Lnet/minecraft/client/gui/GuiIngame;func_175180_a(F)V"
+      }
+    }
+  }
+}

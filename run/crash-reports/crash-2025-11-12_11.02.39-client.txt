@@ -1,0 +1,116 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 12.11.25 11:02
+Description: Rendering screen
+
+java.lang.NoClassDefFoundError: instance/bydeclient/dev/BydeClient/mixin/ModuleManager
+	at instance.bydeclient.dev.BydeClient.client.GuiModMenu.drawHomePage(GuiModMenu.java:222)
+	at instance.bydeclient.dev.BydeClient.client.GuiModMenu.drawScreen(GuiModMenu.java:192)
+	at net.minecraft.client.renderer.EntityRenderer.updateCameraAndRender(EntityRenderer.java:1156)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1087)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:378)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+Caused by: java.lang.ClassNotFoundException: instance.bydeclient.dev.BydeClient.mixin.ModuleManager
+	at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:191)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351)
+	... 18 more
+Caused by: org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An unexpected critical error was encountered
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:521)
+	at org.spongepowered.asm.mixin.transformer.Proxy.transform(Proxy.java:72)
+	at net.minecraft.launchwrapper.LaunchClassLoader.runTransformers(LaunchClassLoader.java:279)
+	at net.minecraft.launchwrapper.LaunchClassLoader.findClass(LaunchClassLoader.java:176)
+	... 20 more
+Caused by: java.lang.NoClassDefFoundError: instance.bydeclient.dev.BydeClient.mixin.ModuleManager is a mixin class and cannot be referenced directly
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:488)
+	... 23 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at instance.bydeclient.dev.BydeClient.client.GuiModMenu.drawHomePage(GuiModMenu.java:222)
+	at instance.bydeclient.dev.BydeClient.client.GuiModMenu.drawScreen(GuiModMenu.java:192)
+
+-- Screen render details --
+Details:
+	Screen name: instance.bydeclient.dev.BydeClient.client.GuiModMenu
+	Mouse location: Scaled: (310, 148). Absolute: (621, 182)
+	Screen size: Scaled: (427, 240). Absolute: (854, 480). Scale factor of 2
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 18 total; [EntityPlayerSP['De1fy'/393727, l='MpServer', x=-14,47, y=92,00, z=25,28], EntityOtherPlayerMP['§8[NPC] 4937'/5, l='MpServer', x=-29,50, y=93,00, z=8,50], EntityOtherPlayerMP['§8[NPC] 1973'/9, l='MpServer', x=-30,50, y=93,00, z=3,50], EntityOtherPlayerMP['maks_kray'/130785, l='MpServer', x=0,50, y=95,22, z=0,50], EntityOtherPlayerMP['fruxid'/391810, l='MpServer', x=-12,34, y=92,00, z=2,41], EntityOtherPlayerMP['mrcatlat'/392891, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['§8[NPC] 1877'/393730, l='MpServer', x=-25,50, y=92,00, z=13,50], EntityOtherPlayerMP['§8[NPC] 4328'/43, l='MpServer', x=-17,50, y=92,00, z=14,50], EntityOtherPlayerMP['§8[NPC] 9745'/13, l='MpServer', x=-30,50, y=93,00, z=-2,50], EntityOtherPlayerMP['§8[NPC] 1503'/49, l='MpServer', x=-28,50, y=92,00, z=-11,50], EntityOtherPlayerMP['§8[NPC] 1356'/17, l='MpServer', x=-29,50, y=93,00, z=-7,50], EntityOtherPlayerMP['§8[NPC] 7822'/21, l='MpServer', x=-9,50, y=93,00, z=-4,50], EntityOtherPlayerMP['§8[NPC] 2699'/62, l='MpServer', x=-16,50, y=92,00, z=0,50], EntityOtherPlayerMP['§8[NPC] 9828'/46, l='MpServer', x=-13,50, y=92,00, z=-8,50], EntityOtherPlayerMP['§8[NPC] 8253'/1, l='MpServer', x=-9,50, y=93,00, z=5,50], EntityOtherPlayerMP['satafan000'/394346, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['SquidDas2016'/395464, l='MpServer', x=-30,22, y=93,00, z=-1,94], EntityOtherPlayerMP['m1rage12'/395568, l='MpServer', x=0,50, y=94,00, z=0,50]]
+	Chunk stats: MultiplayerChunkCache: 289, 289
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: 0,00,94,00,0,00 - World: (0,94,0), Chunk: (at 0,5,0 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 36326 game time, 13050 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: true. Cheats: false
+	Forced entities: 105 total; [EntityArmorStand['§fВсего убийств: §b343'/393734, l='MpServer', x=-25,50, y=94,00, z=13,50], EntityOtherPlayerMP['§8[NPC] 8253'/1, l='MpServer', x=-9,50, y=93,00, z=5,50], EntityArmorStand['§fВсего побед: §b79'/393735, l='MpServer', x=-25,50, y=93,72, z=13,50], EntityArmorStand['§fВаш уровень: §7[10] '/393732, l='MpServer', x=-25,50, y=94,59, z=13,50], EntityArmorStand['§bПосыльный'/3, l='MpServer', x=-9,50, y=94,00, z=5,50], EntityArmorStand['§fПрогресс: §b820§7/§a5000'/393733, l='MpServer', x=-25,50, y=94,31, z=13,50], EntityOtherPlayerMP['§8[NPC] 1877'/393730, l='MpServer', x=-25,50, y=92,00, z=13,50], EntityArmorStand['§aНАЖМИТЕ ПКМ'/4, l='MpServer', x=-9,50, y=93,69, z=5,50], EntityOtherPlayerMP['§8[NPC] 4937'/5, l='MpServer', x=-29,50, y=93,00, z=8,50], EntityArmorStand['§b§lТвой профиль Bed Wars'/393731, l='MpServer', x=-25,50, y=94,88, z=13,50], EntityArmorStand['§6§nЗАБЕРИТЕ НАГРАДУ§r'/393728, l='MpServer', x=-9,50, y=94,50, z=5,50], EntityArmorStand['§a§lНАЖМИТЕ, ЧТОБЫ ИГРАТЬ'/6, l='MpServer', x=-29,50, y=94,59, z=8,50], EntityArmorStand['§aСтажер ✹§f'/393729, l='MpServer', x=-15,05, y=94,35, z=24,82], EntityArmorStand['§b§lSolo'/7, l='MpServer', x=-29,50, y=94,28, z=8,50], EntityOtherPlayerMP['h1627'/394215, l='MpServer', x=-28,41, y=92,50, z=-5,75], EntityArmorStand['§f60 играют'/8, l='MpServer', x=-29,50, y=94,00, z=8,50], EntityOtherPlayerMP['§8[NPC] 1973'/9, l='MpServer', x=-30,50, y=93,00, z=3,50], EntityOtherPlayerMP['§8[NPC] 9745'/13, l='MpServer', x=-30,50, y=93,00, z=-2,50], EntityArmorStand['§fПобед подряд: §b1'/393736, l='MpServer', x=-25,50, y=93,44, z=13,50], EntityArmorStand['§aНАЖМИ, ЧТОБЫ ПОСМОТРЕТЬ'/393737, l='MpServer', x=-25,50, y=93,16, z=13,50], EntityOtherPlayerMP['§8[NPC] 1356'/17, l='MpServer', x=-29,50, y=93,00, z=-7,50], EntityOtherPlayerMP['§8[NPC] 7822'/21, l='MpServer', x=-9,50, y=93,00, z=-4,50], EntityPlayerSP['De1fy'/393727, l='MpServer', x=-14,47, y=92,00, z=25,28], EntityOtherPlayerMP['§8[NPC] 1503'/49, l='MpServer', x=-28,50, y=92,00, z=-11,50], EntityOtherPlayerMP['§8[NPC] 4328'/43, l='MpServer', x=-17,50, y=92,00, z=14,50], EntityArmorStand['§b§lБоксы'/44, l='MpServer', x=-17,50, y=93,00, z=14,50], EntityOtherPlayerMP['§8[NPC] 2699'/62, l='MpServer', x=-16,50, y=92,00, z=0,50], EntityArmorStand['§eНажмите, чтобы открыть'/45, l='MpServer', x=-17,50, y=92,69, z=14,50], EntityOtherPlayerMP['§8[NPC] 9828'/46, l='MpServer', x=-13,50, y=92,00, z=-8,50], EntityOtherPlayerMP['§8[NPC] 1503'/49, l='MpServer', x=-28,50, y=92,00, z=-11,50], EntityOtherPlayerMP['§8[NPC] 9828'/46, l='MpServer', x=-13,50, y=92,00, z=-8,50], EntityOtherPlayerMP['§8[NPC] 8253'/1, l='MpServer', x=-9,50, y=93,00, z=5,50], EntityOtherPlayerMP['§8[NPC] 2699'/62, l='MpServer', x=-16,50, y=92,00, z=0,50], EntityArmorStand['§6§lЭЛИТА СЕРВЕРА'/63, l='MpServer', x=-16,50, y=93,50, z=0,50], EntityOtherPlayerMP['§8[NPC] 1973'/9, l='MpServer', x=-30,50, y=93,00, z=3,50], EntityArmorStand['§d§lULTRA §dOakSheep0897924'/64, l='MpServer', x=-16,50, y=93,19, z=0,50], EntityOtherPlayerMP['§8[NPC] 4937'/5, l='MpServer', x=-29,50, y=93,00, z=8,50], EntityOtherPlayerMP['satafan000'/394346, l='MpServer', x=0,50, y=94,00, z=0,50], EntityArmorStand['§aНАЖМИТЕ ПКМ'/65, l='MpServer', x=-16,50, y=92,91, z=0,50], EntityOtherPlayerMP['§8[NPC] 1356'/17, l='MpServer', x=-29,50, y=93,00, z=-7,50], EntityOtherPlayerMP['§8[NPC] 9745'/13, l='MpServer', x=-30,50, y=93,00, z=-2,50], EntityOtherPlayerMP['§8[NPC] 7822'/21, l='MpServer', x=-9,50, y=93,00, z=-4,50], EntityOtherPlayerMP['DosH1RacHeK_'/394359, l='MpServer', x=-30,06, y=93,00, z=3,03], EntityOtherPlayerMP['§8[NPC] 4328'/43, l='MpServer', x=-17,50, y=92,00, z=14,50], EntityOtherPlayerMP['Amazin9'/394372, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['maks_kray'/130785, l='MpServer', x=0,50, y=95,22, z=0,50], EntityOtherPlayerMP['mrcatlat'/392891, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['fruxid'/391810, l='MpServer', x=-12,34, y=92,00, z=2,41], EntityOtherPlayerMP['Chok0PAI'/393396, l='MpServer', x=-29,22, y=92,50, z=4,00], EntityOtherPlayerMP['incorrible'/393194, l='MpServer', x=-8,09, y=93,00, z=-0,06], EntityOtherPlayerMP['§8[NPC] 1877'/393730, l='MpServer', x=-25,50, y=92,00, z=13,50], EntityOtherPlayerMP['satafan000'/394346, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['SquidDas2016'/395464, l='MpServer', x=-30,22, y=93,00, z=-1,94], EntityArmorStand['§bУченик§f'/391812, l='MpServer', x=-12,33, y=94,09, z=2,41], EntityOtherPlayerMP['fruxid'/391810, l='MpServer', x=-12,34, y=92,00, z=2,41], EntityOtherPlayerMP['m1rage12'/395568, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['mrcatlat'/392891, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['narellaa'/394673, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['SolaZola22882'/394690, l='MpServer', x=-29,66, y=93,00, z=3,63], EntityOtherPlayerMP['SquidDas2016'/395464, l='MpServer', x=-30,22, y=93,00, z=-1,94], EntityOtherPlayerMP['maks_kray'/130785, l='MpServer', x=0,50, y=95,22, z=0,50], EntityOtherPlayerMP['efsfefsfsfsfse'/393842, l='MpServer', x=-4,69, y=94,00, z=1,31], EntityChicken['Chicken'/130805, l='MpServer', x=0,13, y=94,00, z=2,81], EntityArmorStand['Armor Stand'/130807, l='MpServer', x=-0,13, y=93,28, z=3,00], EntityArmorStand['Armor Stand'/130806, l='MpServer', x=0,13, y=93,03, z=2,81], EntityArmorStand['Armor Stand'/130809, l='MpServer', x=0,47, y=93,50, z=3,41], EntityArmorStand['Armor Stand'/130808, l='MpServer', x=-0,03, y=93,00, z=2,63], EntityArmorStand['Armor Stand'/130811, l='MpServer', x=0,69, y=93,03, z=3,53], EntityArmorStand['Armor Stand'/130810, l='MpServer', x=0,34, y=93,28, z=2,63], EntityArmorStand['Armor Stand'/130813, l='MpServer', x=0,63, y=93,50, z=3,28], EntityArmorStand['Armor Stand'/130812, l='MpServer', x=0,22, y=93,50, z=3,09], EntityArmorStand['Armor Stand'/130815, l='MpServer', x=0,38, y=93,50, z=2,97], EntityArmorStand['Armor Stand'/130814, l='MpServer', x=0,88, y=93,59, z=3,69], EntityArmorStand['Armor Stand'/130817, l='MpServer', x=0,97, y=93,28, z=3,41], EntityOtherPlayerMP['Dreamusick'/395357, l='MpServer', x=-2,47, y=94,00, z=0,50], EntityArmorStand['Armor Stand'/130816, l='MpServer', x=0,50, y=93,28, z=3,78], EntityOtherPlayerMP['§8[NPC] 4328'/43, l='MpServer', x=-17,50, y=92,00, z=14,50], EntityOtherPlayerMP['§8[NPC] 1877'/393730, l='MpServer', x=-25,50, y=92,00, z=13,50], EntityArmorStand['Armor Stand'/395558, l='MpServer', x=-9,21, y=94,28, z=-3,85], EntityOtherPlayerMP['§8[NPC] 9745'/13, l='MpServer', x=-30,50, y=93,00, z=-2,50], EntityArmorStand['Armor Stand'/395559, l='MpServer', x=-17,21, y=93,28, z=15,12], EntityArmorStand['Armor Stand'/395556, l='MpServer', x=-16,78, y=93,61, z=14,43], EntityArmorStand['Armor Stand'/395557, l='MpServer', x=-8,78, y=94,61, z=-4,54], EntityArmorStand['Armor Stand'/395554, l='MpServer', x=-17,33, y=93,93, z=13,80], EntityOtherPlayerMP['§8[NPC] 1503'/49, l='MpServer', x=-28,50, y=92,00, z=-11,50], EntityArmorStand['Armor Stand'/395555, l='MpServer', x=-9,33, y=94,93, z=-5,17], EntityOtherPlayerMP['§8[NPC] 1356'/17, l='MpServer', x=-29,50, y=93,00, z=-7,50], EntityArmorStand['Armor Stand'/395566, l='MpServer', x=-16,78, y=92,00, z=14,43], EntityArmorStand['Armor Stand'/395567, l='MpServer', x=-8,78, y=93,00, z=-4,54], EntityArmorStand['Armor Stand'/395564, l='MpServer', x=-9,33, y=93,33, z=-5,17], EntityArmorStand['Armor Stand'/395565, l='MpServer', x=-17,33, y=92,33, z=13,80], EntityArmorStand['Armor Stand'/395562, l='MpServer', x=-18,07, y=92,64, z=14,11], EntityArmorStand['Armor Stand'/395563, l='MpServer', x=-10,07, y=93,64, z=-4,85], EntityArmorStand['Armor Stand'/395560, l='MpServer', x=-10,01, y=93,96, z=-4,04], EntityArmorStand['Armor Stand'/395561, l='MpServer', x=-18,01, y=92,96, z=14,93], EntityOtherPlayerMP['m1rage12'/395568, l='MpServer', x=0,50, y=94,00, z=0,50], EntityOtherPlayerMP['§8[NPC] 7822'/21, l='MpServer', x=-9,50, y=93,00, z=-4,50], EntityArmorStand['Armor Stand'/395580, l='MpServer', x=-9,21, y=92,69, z=-3,85], EntityArmorStand['Armor Stand'/395579, l='MpServer', x=-17,21, y=91,69, z=15,12], EntityOtherPlayerMP['§8[NPC] 2699'/62, l='MpServer', x=-16,50, y=92,00, z=0,50], EntityOtherPlayerMP['§8[NPC] 9828'/46, l='MpServer', x=-13,50, y=92,00, z=-8,50], EntityWither['§f§lДОБРО ПОЖАЛОВАТЬ НА §b§lAGERAPVP CLUB§f!'/443727, l='MpServer', x=8,10, y=64,50, z=55,96], EntityOtherPlayerMP['§8[NPC] 8253'/1, l='MpServer', x=-9,50, y=93,00, z=5,50], EntityOtherPlayerMP['ONALDO'/393975, l='MpServer', x=-5,88, y=93,83, z=0,15], EntityOtherPlayerMP['Tumofiy'/394064, l='MpServer', x=-4,44, y=94,00, z=0,56]]
+	Retry entities: 0 total; []
+	Server brand: Abelix
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:379)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2699)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:399)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.9
+	Operating System: Mac OS X (x86_64) version 26.1
+	Java Version: 1.8.0_462, Temurin
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Temurin
+	Memory: 430323200 bytes (410 MB) / 872939520 bytes (832 MB) up to 1908932608 bytes (1820 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	Launched Version: 1.8.9
+	LWJGL: 2.9.2
+	OpenGL: Apple M1 GL version 2.1 Metal - 90.5, Apple
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because ARB_framebuffer_object is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 8x Apple M1

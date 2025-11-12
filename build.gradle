@@ -30,7 +30,7 @@ compileJava.options.encoding = 'UTF-8'
 
 minecraft {
     version = "1.8.9"
-    tweakClass = "instance.bydeclient.dev.BydeClient.mixins.BydeClientTweaker"
+    tweakClass = "instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker"
     runDir = "run"
     mappings = "stable_20"
     makeObfSourceJar = false
@@ -65,7 +65,7 @@ dependencies {
 
 mixin {
     defaultObfuscationEnv notch
-    add sourceSets.main, "mixins.BydeClient.refmap.json"
+    add sourceSets.main, "mixins.bydeclient.refmap.json"
 }
 
 processResources {
@@ -89,8 +89,8 @@ jar {
 
 jar {
     manifest.attributes(
-            "MixinConfigs": 'mixins.BydeClient.json',
-            "TweakClass": "instance.bydeclient.dev.BydeClient.mixins.BydeClientTweaker",
+            "MixinConfigs": 'mixins.bydeclient.json',
+            "TweakClass": "instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker",
             "TweakOrder": 0,
             "Manifest-Version": 1.0
     )
