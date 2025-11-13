@@ -15,12 +15,10 @@ public class AutoSprintModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] AutoSprint мод включен");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] AutoSprint мод отключен");
         wasSprintingLastTick = false;
     }
 

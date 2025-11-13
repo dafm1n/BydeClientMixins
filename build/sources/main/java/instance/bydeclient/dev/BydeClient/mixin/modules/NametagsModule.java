@@ -18,12 +18,10 @@ public class NametagsModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] Nametags мод включен");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] Nametags мод отключен");
     }
 
     @Override

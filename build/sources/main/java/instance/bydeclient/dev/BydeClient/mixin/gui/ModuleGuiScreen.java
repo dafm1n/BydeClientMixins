@@ -23,6 +23,8 @@ public class ModuleGuiScreen extends GuiScreen {
     private List<ModuleButton> moduleButtons = new ArrayList<>();
     private GuiTextField searchField;
     private GuiButton closeButton;
+    private GuiButton editHudButton;
+    private GuiButton settingsButton;
     private int selectedTab = 0;
     private int scrollOffset = 0;
     private String searchQuery = "";
@@ -47,6 +49,28 @@ public class ModuleGuiScreen extends GuiScreen {
                 "✕"
         );
         this.buttonList.add(closeButton);
+
+        // Кнопка "Edit HUD"
+        editHudButton = new GuiButton(
+                999,
+                panelX + PANEL_WIDTH - 75,
+                panelY + 8,
+                40,
+                20,
+                "Edit HUD"
+        );
+        this.buttonList.add(editHudButton);
+
+        // Кнопка "Settings"
+        settingsButton = new GuiButton(
+                1000,
+                panelX + PANEL_WIDTH - 135,
+                panelY + 8,
+                55,
+                20,
+                "Settings"
+        );
+        this.buttonList.add(settingsButton);
 
         // Поле поиска
         searchField = new GuiTextField(997, this.fontRendererObj, panelX + PADDING, panelY + 60, PANEL_WIDTH - PADDING * 2, 25);
@@ -82,11 +106,33 @@ public class ModuleGuiScreen extends GuiScreen {
     private void drawPanel() {
         int panelHeight = 500;
 
-        // Основной фон панели
-        drawRect(panelX, panelY, panelX + PANEL_WIDTH, panelY + panelHeight, 0xFF0f0f0f);
+        // Основной фон панели с закругленными углами
+        drawRoundedRect(panelX, panelY, panelX + PANEL_WIDTH, panelY + panelHeight, 10, 0xFF1a1a1a);
 
-        // Верхняя граница (светлая)
-        drawRect(panelX, panelY, panelX + PANEL_WIDTH, panelY + 1, 0xFF2a2a2a);
+        // Граница с закругленными углами
+        drawRoundedBorder(panelX, panelY, panelX + PANEL_WIDTH, panelY + panelHeight, 10, 2, 0xFF2a2a2a);
+    }
+
+    private void drawRoundedRect(int x1, int y1, int x2, int y2, int radius, int color) {
+        drawRect(x1 + radius, y1, x2 - radius, y2, color);
+        drawRect(x1, y1 + radius, x2, y2 - radius, color);
+
+        // Углы
+        drawRect(x1, y1, x1 + radius, y1 + radius, color);
+        drawRect(x2 - radius, y1, x2, y1 + radius, color);
+        drawRect(x1, y2 - radius, x1 + radius, y2, color);
+        drawRect(x2 - radius, y2 - radius, x2, y2, color);
+    }
+
+    private void drawRoundedBorder(int x1, int y1, int x2, int y2, int radius, int thickness, int color) {
+        // Верхняя граница
+        drawRect(x1 + radius, y1, x2 - radius, y1 + thickness, color);
+        // Нижняя граница
+        drawRect(x1 + radius, y2 - thickness, x2 - radius, y2, color);
+        // Левая граница
+        drawRect(x1, y1 + radius, x1 + thickness, y2 - radius, color);
+        // Правая граница
+        drawRect(x2 - thickness, y1 + radius, x2, y2 - radius, color);
     }
 
     private void drawHeader() {
@@ -247,6 +293,12 @@ public class ModuleGuiScreen extends GuiScreen {
             if (this.mc.currentScreen == null) {
                 this.mc.setIngameFocus();
             }
+        } else if (button.id == 999) {
+            // Открываем Edit HUD screen
+            this.mc.displayGuiScreen(new EditHudScreen(this));
+        } else if (button.id == 1000) {
+            // Открываем Settings screen
+            this.mc.displayGuiScreen(new SettingsScreen(this));
         }
     }
 

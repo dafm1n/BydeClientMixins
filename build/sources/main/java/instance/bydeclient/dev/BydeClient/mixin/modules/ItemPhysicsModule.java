@@ -16,12 +16,10 @@ public class ItemPhysicsModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] ItemPhysics мод включен");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] ItemPhysics мод отключен");
     }
 
     @Override

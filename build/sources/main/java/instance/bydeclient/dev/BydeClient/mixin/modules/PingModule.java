@@ -17,12 +17,10 @@ public class PingModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] Ping мод включен");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] Ping мод отключен");
     }
 
     @Override

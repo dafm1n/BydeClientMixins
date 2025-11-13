@@ -8,8 +8,7 @@
     "Mixin.MixinGuiIngame",
     "Mixin.MixinGuiChat",
     "Mixin.MixinMinecraft",
-    "Mixin.MixinMinecraftShutdown",
-    "Mixin.MixinPlayerCape"
+    "Mixin.MixinMinecraftShutdown"
   ],
   "injectors": {
     "defaultRequire": 1

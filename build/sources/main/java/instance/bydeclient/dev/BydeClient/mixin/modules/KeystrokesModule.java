@@ -46,12 +46,10 @@ public class KeystrokesModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] Keystrokes мод включен");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] Keystrokes мод отключен");
     }
 
     @Override

@@ -21,6 +21,14 @@ public class ModuleManager {
     private NametagsModule nametagsModule;
     private PingModule pingModule;
     private ItemPhysicsModule itemPhysicsModule;
+    private SwordAnimationModule swordAnimationModule;
+    private ArmorStatusModule armorStatusModule;
+    private MotionBlurModule motionBlurModule;
+    private InventoryBlurModule inventoryBlurModule;
+    private ParticlesModule particlesModule;
+    private PlayerCounterModule playerCounterModule;
+    private ScoreboardModule scoreboardModule;
+    private FPSModule fpsModule;
 
     private ModuleManager() {
         initializeModules();
@@ -43,6 +51,14 @@ public class ModuleManager {
         nametagsModule = new NametagsModule();
         pingModule = new PingModule();
         itemPhysicsModule = new ItemPhysicsModule();
+        swordAnimationModule = new SwordAnimationModule();
+        armorStatusModule = new ArmorStatusModule();
+        motionBlurModule = new MotionBlurModule();
+        inventoryBlurModule = new InventoryBlurModule();
+        particlesModule = new ParticlesModule();
+        playerCounterModule = new PlayerCounterModule();
+        scoreboardModule = new ScoreboardModule();
+        fpsModule = new FPSModule();
 
         // Добавляем в список
         addModule(keystrokesModule);
@@ -53,8 +69,14 @@ public class ModuleManager {
         addModule(nametagsModule);
         addModule(pingModule);
         addModule(itemPhysicsModule);
-
-        System.out.println("[BydeClient] ModuleManager инициализирован с " + moduleList.size() + " модулями");
+        addModule(swordAnimationModule);
+        addModule(armorStatusModule);
+        addModule(motionBlurModule);
+        addModule(inventoryBlurModule);
+        addModule(particlesModule);
+        addModule(playerCounterModule);
+        addModule(scoreboardModule);
+        addModule(fpsModule);
     }
 
     private void addModule(Module module) {
@@ -98,6 +120,38 @@ public class ModuleManager {
         return itemPhysicsModule;
     }
 
+    public SwordAnimationModule getSwordAnimationModule() {
+        return swordAnimationModule;
+    }
+
+    public ArmorStatusModule getArmorStatusModule() {
+        return armorStatusModule;
+    }
+
+    public MotionBlurModule getMotionBlurModule() {
+        return motionBlurModule;
+    }
+
+    public InventoryBlurModule getInventoryBlurModule() {
+        return inventoryBlurModule;
+    }
+
+    public ParticlesModule getParticlesModule() {
+        return particlesModule;
+    }
+
+    public PlayerCounterModule getPlayerCounterModule() {
+        return playerCounterModule;
+    }
+
+    public ScoreboardModule getScoreboardModule() {
+        return scoreboardModule;
+    }
+
+    public FPSModule getFPSModule() {
+        return fpsModule;
+    }
+
     public List<Module> getModules() {
         return new ArrayList<>(moduleList);
     }
@@ -114,7 +168,6 @@ public class ModuleManager {
         Module module = getModule(name);
         if (module != null) {
             module.toggle();
-            System.out.println("[BydeClient] " + name + " " + (module.isEnabled() ? "включен" : "отключен"));
         }
     }
 
@@ -139,9 +192,5 @@ public class ModuleManager {
     }
 
     public void printModuleStatus() {
-        System.out.println("[BydeClient] === Статус модулей ===");
-        for (Module module : moduleList) {
-            System.out.println("  " + module.getName() + ": " + (module.isEnabled() ? "ВКЛЮЧЕН" : "ОТКЛЮЧЕН"));
-        }
     }
 }

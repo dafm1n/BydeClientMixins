@@ -10,15 +10,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
  * Mixin для обработки клавиш в чате
+ * GUI модулей теперь открывается только на Right Shift (не в чате)
  */
 @Mixin(GuiChat.class)
 public class MixinGuiChat {
 
     @Inject(method = "keyTyped", at = @At("HEAD"), cancellable = true)
     private void onKeyTyped(char typedChar, int keyCode, CallbackInfo ci) {
-        // Открываем GUI модулей по нажатию G
-        if (keyCode == Keyboard.KEY_G) {
-            net.minecraft.client.Minecraft.getMinecraft().displayGuiScreen(new ModuleGuiScreen());
+        // Проверяем если нажата Right Shift - не открываем GUI в чате
+        if (keyCode == Keyboard.KEY_RSHIFT) {
             ci.cancel();
         }
     }

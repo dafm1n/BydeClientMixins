@@ -16,12 +16,10 @@ public class BlockOverlayModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] BlockOverlay мод включен");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] BlockOverlay мод отключен");
     }
 
     @Override

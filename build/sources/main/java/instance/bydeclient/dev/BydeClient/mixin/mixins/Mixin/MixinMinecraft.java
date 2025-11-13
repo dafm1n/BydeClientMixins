@@ -33,16 +33,17 @@ public class MixinMinecraft {
             discordUpdateCounter = 0;
         }
 
-        // Проверяем нажатие клавиши G для открытия GUI модулей
-        boolean gKeyDown = Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
+        // Проверяем нажатие клавиши RIGHT SHIFT для открытия GUI модулей
+        boolean rShiftDown = Keyboard.isKeyDown(Keyboard.KEY_RSHIFT);
 
-        if (gKeyDown && !gKeyPressed) {
+        if (rShiftDown && !gKeyPressed) {
             Minecraft mc = Minecraft.getMinecraft();
+            // Открываем GUI только если нет открытого экрана и игрок не в чате
             if (mc.currentScreen == null && mc.thePlayer != null) {
                 mc.displayGuiScreen(new ModuleGuiScreen());
             }
             gKeyPressed = true;
-        } else if (!gKeyDown) {
+        } else if (!rShiftDown) {
             gKeyPressed = false;
         }
     }

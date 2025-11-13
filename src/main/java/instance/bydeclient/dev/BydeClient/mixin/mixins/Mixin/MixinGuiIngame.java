@@ -1,9 +1,6 @@
 package instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin;
 
-import instance.bydeclient.dev.BydeClient.mixin.modules.BlockOverlayModule;
-import instance.bydeclient.dev.BydeClient.mixin.modules.KeystrokesModule;
-import instance.bydeclient.dev.BydeClient.mixin.modules.ModuleManager;
-import instance.bydeclient.dev.BydeClient.mixin.modules.PingModule;
+import instance.bydeclient.dev.BydeClient.mixin.modules.*;
 import net.minecraft.client.gui.GuiIngame;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -39,6 +36,36 @@ public class MixinGuiIngame {
         BlockOverlayModule blockOverlayModule = manager.getBlockOverlayModule();
         if (blockOverlayModule != null && blockOverlayModule.isEnabled()) {
             blockOverlayModule.renderBlockOverlay();
+        }
+
+        // Рендерим ArmorStatus
+        ArmorStatusModule armorStatusModule = manager.getArmorStatusModule();
+        if (armorStatusModule != null && armorStatusModule.isEnabled()) {
+            armorStatusModule.renderArmorStatus();
+        }
+
+        // Рендерим Player Counter
+        PlayerCounterModule playerCounterModule = manager.getPlayerCounterModule();
+        if (playerCounterModule != null && playerCounterModule.isEnabled()) {
+            playerCounterModule.renderPlayerCounter();
+        }
+
+        // Применяем Motion Blur
+        MotionBlurModule motionBlurModule = manager.getMotionBlurModule();
+        if (motionBlurModule != null && motionBlurModule.isEnabled()) {
+            motionBlurModule.applyMotionBlur(partialTicks);
+        }
+
+        // Применяем Inventory Blur
+        InventoryBlurModule inventoryBlurModule = manager.getInventoryBlurModule();
+        if (inventoryBlurModule != null && inventoryBlurModule.isEnabled()) {
+            inventoryBlurModule.applyInventoryBlur();
+        }
+
+        // Рендерим FPS
+        FPSModule fpsModule = manager.getFPSModule();
+        if (fpsModule != null && fpsModule.isEnabled()) {
+            fpsModule.renderFPS();
         }
     }
 }

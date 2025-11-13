@@ -27,7 +27,6 @@ public class BydeClientTweaker implements ITweaker {
             if ("--username".equals(arg) && i + 1 < args.size()) {
                 modifiedArgs.add(arg);
                 modifiedArgs.add(CUSTOM_NICK);
-                System.out.println("[BydeClient] Ник изменён на: " + CUSTOM_NICK);
                 i++; // пропускаем оригинальное имя
             } else {
                 modifiedArgs.add(arg);
@@ -56,7 +55,6 @@ public class BydeClientTweaker implements ITweaker {
         try {
             URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
             classLoader.addURL(jarLocation);
-            System.out.println("[BydeClient] JAR успешно внедрён");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,7 +68,6 @@ public class BydeClientTweaker implements ITweaker {
 
         // Инициализируем ModuleManager
         ModuleManager.getInstance();
-        System.out.println("[BydeClient] Модули инициализированы");
     }
 
     @Override

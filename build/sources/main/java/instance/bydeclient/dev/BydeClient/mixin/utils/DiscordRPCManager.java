@@ -10,7 +10,7 @@ public class DiscordRPCManager {
     public static void init() {
         if (initialized) return;
         initialized = true;
-        System.out.println("[BydeClient] Discord RPC инициализирован");
+        // logging removed
     }
 
     public static void update() {
@@ -49,16 +49,16 @@ public class DiscordRPCManager {
                 }
             }
 
-            System.out.println("[BydeClient] Discord RPC: " + state + " - " + details);
+            // logging removed
         } catch (Exception e) {
-            System.out.println("[BydeClient] Ошибка обновления Discord RPC: " + e.getMessage());
+            // logging removed
         }
     }
 
     public static void shutdown() {
         if (initialized) {
             initialized = false;
-            System.out.println("[BydeClient] Discord RPC отключен");
+            // logging removed
         }
     }
 }

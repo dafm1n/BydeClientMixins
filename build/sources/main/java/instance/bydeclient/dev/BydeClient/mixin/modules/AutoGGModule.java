@@ -18,13 +18,11 @@ public class AutoGGModule extends Module {
 
     @Override
     public void onEnable() {
-        System.out.println("[BydeClient] AutoGG мод включен");
         gameEnded = false;
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[BydeClient] AutoGG мод отключен");
     }
 
     @Override
@@ -73,7 +71,6 @@ public class AutoGGModule extends Module {
         Minecraft mc = Minecraft.getMinecraft();
         if (mc.thePlayer != null) {
             mc.thePlayer.sendChatMessage(message);
-            System.out.println("[BydeClient] AutoGG: Отправлено сообщение: " + message);
         }
     }
 
