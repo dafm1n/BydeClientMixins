@@ -71,14 +71,6 @@ public class SettingsScreen extends GuiScreen {
             this.fontRendererObj.drawString("§aStatus: ACTIVE", x + 10, currentY, 0x00FF00);
             currentY += 11;
 
-            FPSBoostModule.MemoryInfo memInfo = fpsModule.getMemoryInfo();
-            this.fontRendererObj.drawString(
-                    "Memory: " + memInfo.usedMB + "MB / " + memInfo.maxMB + "MB (" + memInfo.getPercentage() + "%)",
-                    x + 10,
-                    currentY,
-                    0xFFFFFF
-            );
-            currentY += 11;
 
             this.fontRendererObj.drawString(
                     "FPS: " + fpsModule.getCurrentFPS(),

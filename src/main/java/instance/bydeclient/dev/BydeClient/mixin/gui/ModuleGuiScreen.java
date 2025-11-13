@@ -1,12 +1,12 @@
 package instance.bydeclient.dev.BydeClient.mixin.gui;
 
-import instance.bydeclient.dev.BydeClient.mixin.modules.KeystrokesModule;
 import instance.bydeclient.dev.BydeClient.mixin.modules.Module;
 import instance.bydeclient.dev.BydeClient.mixin.modules.ModuleManager;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,103 +14,179 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ModuleGuiScreen extends GuiScreen {
-    private static final int PANEL_WIDTH = 300;
-    private static final int TAB_HEIGHT = 32;
-    private static final int PADDING = 12;
-    private static final int SPACING = 2;
-    private static final int MODULE_ITEM_HEIGHT = 45;
+    private static final int GRID_COLS = 5;
+    private static final int MODULE_BOX_SIZE = 95;
+    private static final int MODULE_BOX_SPACING = 12;
+    private static final int PADDING = 20;
+    private static final int HEADER_HEIGHT = 60;
+    private static final int ROUNDED_RADIUS = 8;
 
-    private List<ModuleButton> moduleButtons = new ArrayList<>();
     private GuiTextField searchField;
     private GuiButton closeButton;
     private GuiButton editHudButton;
-    private GuiButton settingsButton;
-    private int selectedTab = 0;
     private int scrollOffset = 0;
     private String searchQuery = "";
-    private int panelX;
-    private int panelY;
 
     @Override
     public void initGui() {
-        moduleButtons.clear();
-
-        // Позиция панели (слева сверху)
-        panelX = 10;
-        panelY = 10;
-
         // Кнопка закрытия
-        closeButton = new GuiButton(
-                998,
-                panelX + PANEL_WIDTH - 32,
-                panelY + 8,
-                20,
-                20,
-                "✕"
-        );
+        closeButton = new GuiButton(998, this.width - PADDING - 25, PADDING + 10, 20, 20, "✕");
         this.buttonList.add(closeButton);
 
         // Кнопка "Edit HUD"
-        editHudButton = new GuiButton(
-                999,
-                panelX + PANEL_WIDTH - 75,
-                panelY + 8,
-                40,
-                20,
-                "Edit HUD"
-        );
+        editHudButton = new GuiButton(999, this.width - PADDING - 120, PADDING + 10, 90, 20, "Edit HUD");
         this.buttonList.add(editHudButton);
 
-        // Кнопка "Settings"
-        settingsButton = new GuiButton(
-                1000,
-                panelX + PANEL_WIDTH - 135,
-                panelY + 8,
-                55,
-                20,
-                "Settings"
-        );
-        this.buttonList.add(settingsButton);
-
         // Поле поиска
-        searchField = new GuiTextField(997, this.fontRendererObj, panelX + PADDING, panelY + 60, PANEL_WIDTH - PADDING * 2, 25);
+        searchField = new GuiTextField(997, this.fontRendererObj, PADDING + 250, PADDING + 15, 180, 18);
         searchField.setMaxStringLength(50);
         searchField.setEnableBackgroundDrawing(false);
-        searchField.setTextColor(0xFFFFFF);
+        searchField.setTextColor(0xFFFFFFFF);
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        // Полупрозрачный фон всего экрана
+        // Полупрозрачный фон
         drawRect(0, 0, this.width, this.height, 0x88000000);
 
-        // Рисуем основную панель
-        drawPanel();
-
-        // Рисуем заголовок
-        drawHeader();
-
-        // Рисуем вкладки
-        drawTabs(mouseX, mouseY);
-
-        // Рисуем поле поиска
-        drawSearchField();
-
-        // Рисуем список модулей
-        drawModulesList(mouseX, mouseY);
-
-        // Рисуем кнопки
-        closeButton.drawButton(this.mc, mouseX, mouseY);
+        // Рисуем основное окно
+        drawMainWindow(mouseX, mouseY);
     }
 
-    private void drawPanel() {
-        int panelHeight = 500;
+    private void drawMainWindow(int mouseX, int mouseY) {
+        int mainX = PADDING;
+        int mainY = PADDING;
+        int mainWidth = this.width - PADDING * 2;
+        int mainHeight = this.height - PADDING * 2;
 
-        // Основной фон панели с закругленными углами
-        drawRoundedRect(panelX, panelY, panelX + PANEL_WIDTH, panelY + panelHeight, 10, 0xFF1a1a1a);
+        // Основной фон с закругленными углами
+        drawRoundedRect(mainX, mainY, mainX + mainWidth, mainY + mainHeight, ROUNDED_RADIUS, 0xFF1a1a1a);
+        drawRoundedBorder(mainX, mainY, mainX + mainWidth, mainY + mainHeight, ROUNDED_RADIUS, 2, 0xFF2a2a2a);
 
-        // Граница с закругленными углами
-        drawRoundedBorder(panelX, panelY, panelX + PANEL_WIDTH, panelY + panelHeight, 10, 2, 0xFF2a2a2a);
+        // Заголовок слева
+        drawHeader(mainX, mainY);
+
+        // Search box с иконкой
+        drawSearchBox(mainX, mainY);
+
+        // Рисуем кнопки Edit HUD и Close
+        closeButton.drawButton(this.mc, mouseX, mouseY);
+        editHudButton.drawButton(this.mc, mouseX, mouseY);
+
+        // Рисуем модули сеткой
+        drawModulesGrid(mainX, mainY, mainWidth, mainHeight, mouseX, mouseY);
+
+        // Сетка снизу (индикаторы страниц)
+        drawPageIndicators(mainX, mainY, mainWidth, mainHeight);
+    }
+
+    private void drawHeader(int x, int y) {
+        // Логотип
+        drawRect(x + 15, y + 12, x + 30, y + 27, 0xFFFFFFFF);
+        this.fontRendererObj.drawString("SC", x + 19, y + 14, 0xFF000000);
+
+        // Текст
+        this.fontRendererObj.drawStringWithShadow("SILENT CLIENT", x + 40, y + 14, 0xFFFFFFFF);
+    }
+
+    private void drawSearchBox(int x, int y) {
+        int searchX = x + 250;
+        int searchY = y + 12;
+
+        // Фон
+        drawRect(searchX, searchY, searchX + 185, searchY + 24, 0xFF0f0f0f);
+        drawRect(searchX + 1, searchY + 1, searchX + 184, searchY + 23, 0xFF1a1a1a);
+
+        // Иконка поиска
+        this.fontRendererObj.drawString("🔍", searchX + 8, searchY + 6, 0xFF888888);
+
+        // Поле ввода
+        searchField.xPosition = searchX + 22;
+        searchField.yPosition = searchY + 5;
+        searchField.drawTextBox();
+    }
+
+    private void drawModulesGrid(int mainX, int mainY, int mainWidth, int mainHeight, int mouseX, int mouseY) {
+        int gridStartY = mainY + HEADER_HEIGHT + 10;
+        int gridMaxHeight = mainHeight - HEADER_HEIGHT - 40;
+        int gridWidth = mainWidth - 30;
+
+        ModuleManager manager = ModuleManager.getInstance();
+        List<Module> modules = manager.getModules();
+
+        // Фильтруем по поиску
+        if (!searchQuery.isEmpty()) {
+            modules = modules.stream()
+                    .filter(m -> m.getName().toLowerCase().contains(searchQuery.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+
+        int yOffset = gridStartY - scrollOffset;
+        int moduleCount = 0;
+
+        for (Module module : modules) {
+            int col = moduleCount % GRID_COLS;
+            int row = moduleCount / GRID_COLS;
+
+            int boxX = mainX + 15 + (col * (MODULE_BOX_SIZE + MODULE_BOX_SPACING));
+            int boxY = yOffset + (row * (MODULE_BOX_SIZE + MODULE_BOX_SPACING));
+
+            // Проверяем видимость
+            if (boxY + MODULE_BOX_SIZE < gridStartY || boxY > gridStartY + gridMaxHeight) {
+                moduleCount++;
+                continue;
+            }
+
+            // Рисуем модуль
+            drawModuleBox(boxX, boxY, module, mouseX, mouseY);
+            moduleCount++;
+        }
+    }
+
+    private void drawModuleBox(int x, int y, Module module, int mouseX, int mouseY) {
+        boolean isHovered = mouseX >= x && mouseX < x + MODULE_BOX_SIZE &&
+                           mouseY >= y && mouseY < y + MODULE_BOX_SIZE;
+
+        // Фон с закругленными углами
+        int bgColor = isHovered ? 0xFF2a2a2a : 0xFF1a1a1a;
+        drawRoundedRect(x, y, x + MODULE_BOX_SIZE, y + MODULE_BOX_SIZE, 5, bgColor);
+        drawRoundedBorder(x, y, x + MODULE_BOX_SIZE, y + MODULE_BOX_SIZE, 5, 1, 0xFF2a2a2a);
+
+        // Иконка/символ модуля (простой символ)
+        String icon = getModuleIcon(module.getName());
+        this.fontRendererObj.drawStringWithShadow(icon, x + MODULE_BOX_SIZE / 2 - 8, y + 15, 0xFFFFFFFF);
+
+        // Название
+        String name = module.getName();
+        int nameWidth = this.fontRendererObj.getStringWidth(name);
+        this.fontRendererObj.drawStringWithShadow(name, x + (MODULE_BOX_SIZE - nameWidth) / 2, y + 40, 0xFFFFFFFF);
+
+        // Toggle switch
+        boolean enabled = module.isEnabled();
+        int toggleX = x + (MODULE_BOX_SIZE - 30) / 2;
+        int toggleY = y + 60;
+        drawToggleSwitch(toggleX, toggleY, enabled);
+    }
+
+    private void drawToggleSwitch(int x, int y, boolean enabled) {
+        // Фон
+        drawRect(x, y, x + 30, y + 12, 0xFF2a2a2a);
+        drawRect(x + 1, y + 1, x + 29, y + 11, enabled ? 0xFF00AA00 : 0xFF555555);
+
+        // Круг
+        int circleX = enabled ? x + 17 : x + 2;
+        drawRect(circleX, y + 2, circleX + 8, y + 10, 0xFFFFFFFF);
+    }
+
+    private void drawPageIndicators(int mainX, int mainY, int mainWidth, int mainHeight) {
+        int indicatorY = mainY + mainHeight - 20;
+        int indicatorSpacing = 8;
+        int indicatorSize = 6;
+
+        for (int i = 0; i < 8; i++) {
+            int boxX = mainX + mainWidth / 2 - (8 * (indicatorSize + indicatorSpacing)) / 2 + (i * (indicatorSize + indicatorSpacing));
+            drawRect(boxX, indicatorY, boxX + indicatorSize, indicatorY + indicatorSize, 0xFF2a2a2a);
+        }
     }
 
     private void drawRoundedRect(int x1, int y1, int x2, int y2, int radius, int color) {
@@ -125,180 +201,44 @@ public class ModuleGuiScreen extends GuiScreen {
     }
 
     private void drawRoundedBorder(int x1, int y1, int x2, int y2, int radius, int thickness, int color) {
-        // Верхняя граница
         drawRect(x1 + radius, y1, x2 - radius, y1 + thickness, color);
-        // Нижняя граница
         drawRect(x1 + radius, y2 - thickness, x2 - radius, y2, color);
-        // Левая граница
         drawRect(x1, y1 + radius, x1 + thickness, y2 - radius, color);
-        // Правая граница
         drawRect(x2 - thickness, y1 + radius, x2, y2 - radius, color);
     }
 
-    private void drawHeader() {
-        // Логотип SC
-        drawRect(panelX + PADDING, panelY + 8, panelX + PADDING + 18, panelY + 26, 0xFFFFFFFF);
-        this.fontRendererObj.drawString(
-                "SC",
-                panelX + PADDING + 4,
-                panelY + 10,
-                0xFF000000
-        );
-
-        // Текст SILENT CLIENT
-        this.fontRendererObj.drawStringWithShadow(
-                "SILENT CLIENT",
-                panelX + PADDING + 25,
-                panelY + 10,
-                0xFFFFFFFF
-        );
-    }
-
-    private void drawTabs(int mouseX, int mouseY) {
-        String[] tabs = {"Mods", "Settings", "Configs"};
-        int tabWidth = (PANEL_WIDTH - PADDING * 2) / 3;
-        int tabY = panelY + 35;
-
-        for (int i = 0; i < tabs.length; i++) {
-            int tabX = panelX + PADDING + (i * (tabWidth - 2));
-            boolean isSelected = selectedTab == i;
-            boolean isHovered = mouseX >= tabX && mouseX < tabX + tabWidth &&
-                    mouseY >= tabY && mouseY < tabY + TAB_HEIGHT;
-
-            // Фон вкладки
-            int bgColor = isSelected ? 0xFF1a1a1a : 0xFF0f0f0f;
-            drawRect(tabX, tabY, tabX + tabWidth, tabY + TAB_HEIGHT, bgColor);
-
-            // Граница вкладки
-            drawRect(tabX, tabY, tabX + tabWidth, tabY + 1, 0xFF2a2a2a);
-
-            // Нижняя граница активной вкладки
-            if (isSelected) {
-                drawRect(tabX, tabY + TAB_HEIGHT - 2, tabX + tabWidth, tabY + TAB_HEIGHT, 0xFFFFFFFF);
-            }
-
-            // Текст
-            int textColor = isSelected ? 0xFFFFFFFF : 0xFF888888;
-            this.fontRendererObj.drawStringWithShadow(
-                    tabs[i],
-                    tabX + (tabWidth - this.fontRendererObj.getStringWidth(tabs[i])) / 2,
-                    tabY + 10,
-                    textColor
-            );
-
-            // Обработка клика по вкладке
-            if (isHovered && mouseX >= tabX && mouseX < tabX + tabWidth) {
-                // Клик будет обработан в mouseClicked
-            }
+    private String getModuleIcon(String moduleName) {
+        switch (moduleName.toLowerCase()) {
+            case "animations": return "💫";
+            case "armor status": return "🛡";
+            case "auto gg": return "G";
+            case "auto text": return "T";
+            case "auto tip": return "$";
+            case "block overlay": return "⬜";
+            case "blockinfo": return "ℹ";
+            case "boss bar": return "🗡";
+            case "chat": return "💬";
+            case "chunk borders": return "⬢";
+            case "clear glass": return "🔍";
+            case "clock": return "🕐";
+            case "fps": return "fps";
+            case "keystrokes": return "⌨";
+            case "ping": return "📡";
+            default: return "■";
         }
-    }
-
-    private void drawSearchField() {
-        int searchY = panelY + 67;
-
-        // Фон поля поиска
-        drawRect(panelX + PADDING, searchY, panelX + PANEL_WIDTH - PADDING, searchY + 25, 0xFF1a1a1a);
-
-        // Граница поля
-        drawRect(panelX + PADDING, searchY, panelX + PANEL_WIDTH - PADDING, searchY + 1, 0xFF2a2a2a);
-
-        // Поле ввода
-        searchField.xPosition = panelX + PADDING + 5;
-        searchField.yPosition = searchY + 5;
-        searchField.drawTextBox();
-    }
-
-    private void drawModulesList(int mouseX, int mouseY) {
-        int startY = panelY + 110;
-        int maxHeight = 380;
-
-        ModuleManager manager = ModuleManager.getInstance();
-        List<Module> modules = manager.getModules();
-
-        // Фильтруем по поиску
-        if (!searchQuery.isEmpty()) {
-            modules = modules.stream()
-                    .filter(m -> m.getName().toLowerCase().contains(searchQuery.toLowerCase()))
-                    .collect(Collectors.toList());
-        }
-
-        int yOffset = startY - scrollOffset;
-
-        for (int i = 0; i < modules.size(); i++) {
-            Module module = modules.get(i);
-            int buttonY = yOffset + (i * (MODULE_ITEM_HEIGHT + SPACING));
-
-            if (buttonY + MODULE_ITEM_HEIGHT < startY || buttonY > startY + maxHeight) {
-                continue;
-            }
-
-            // Рисуем элемент модуля
-            drawModuleItem(this.mc, mouseX, mouseY, panelX + PADDING, buttonY,
-                    PANEL_WIDTH - PADDING * 2, MODULE_ITEM_HEIGHT, module);
-        }
-
-        // Граница снизу
-        drawRect(panelX, panelY + panelY + 490, panelX + PANEL_WIDTH, panelY + 495, 0xFF2a2a2a);
-    }
-
-    private void drawModuleItem(net.minecraft.client.Minecraft mc, int mouseX, int mouseY,
-                                int x, int y, int width, int height, Module module) {
-        boolean isHovered = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
-
-        // Фон элемента
-        int bgColor = isHovered ? 0xFF1a1a1a : 0xFF0f0f0f;
-        drawRect(x, y, x + width, y + height, bgColor);
-
-        // Граница элемента
-        drawRect(x, y, x + width, y + 1, 0xFF1a1a1a);
-        drawRect(x, y + height - 1, x + width, y + height, 0xFF1a1a1a);
-
-        // Название модуля
-        mc.fontRendererObj.drawStringWithShadow(
-                module.getName(),
-                x + 12,
-                y + 8,
-                0xFFFFFFFF
-        );
-
-        // Описание модуля
-        String desc = module.getDescription();
-        if (desc != null && !desc.isEmpty()) {
-            mc.fontRendererObj.drawString(
-                    desc,
-                    x + 12,
-                    y + 20,
-                    0xFF888888
-            );
-        }
-
-        // Тогл (переключатель)
-        drawToggle(x + width - 40, y + 12, module.isEnabled());
-    }
-
-    private void drawToggle(int x, int y, boolean enabled) {
-        // Фон тогла
-        drawRect(x, y, x + 35, y + 18, 0xFF2a2a2a);
-        drawRect(x + 1, y + 1, x + 34, y + 17, enabled ? 0xFF00AA00 : 0xFF555555);
-
-        // Круглая часть
-        int circleX = enabled ? x + 19 : x + 3;
-        drawRect(circleX, y + 2, circleX + 14, y + 16, 0xFFFFFFFF);
     }
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.id == 998) {
+            // Close
             this.mc.displayGuiScreen(null);
             if (this.mc.currentScreen == null) {
                 this.mc.setIngameFocus();
             }
         } else if (button.id == 999) {
-            // Открываем Edit HUD screen
+            // Edit HUD
             this.mc.displayGuiScreen(new EditHudScreen(this));
-        } else if (button.id == 1000) {
-            // Открываем Settings screen
-            this.mc.displayGuiScreen(new SettingsScreen(this));
         }
     }
 
@@ -306,22 +246,15 @@ public class ModuleGuiScreen extends GuiScreen {
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
         searchField.mouseClicked(mouseX, mouseY, mouseButton);
 
-        // Проверка клика по вкладкам
-        String[] tabs = {"Mods", "Settings", "Configs"};
-        int tabWidth = (PANEL_WIDTH - PADDING * 2) / 3;
-        int tabY = panelY + 35;
+        // Обработка клика по модулям
+        int mainX = PADDING;
+        int mainY = PADDING;
+        int mainWidth = this.width - PADDING * 2;
+        int mainHeight = this.height - PADDING * 2;
 
-        for (int i = 0; i < tabs.length; i++) {
-            int tabX = panelX + PADDING + (i * (tabWidth - 2));
-            if (mouseX >= tabX && mouseX < tabX + tabWidth && mouseY >= tabY && mouseY < tabY + TAB_HEIGHT) {
-                selectedTab = i;
-                return;
-            }
-        }
+        int gridStartY = mainY + HEADER_HEIGHT + 10;
+        int gridMaxHeight = mainHeight - HEADER_HEIGHT - 40;
 
-        // Проверка клика по модулям
-        int startY = panelY + 110;
-        int maxHeight = 380;
         ModuleManager manager = ModuleManager.getInstance();
         List<Module> modules = manager.getModules();
 
@@ -331,24 +264,29 @@ public class ModuleGuiScreen extends GuiScreen {
                     .collect(Collectors.toList());
         }
 
-        int yOffset = startY - scrollOffset;
+        int yOffset = gridStartY - scrollOffset;
+        int moduleCount = 0;
 
-        for (int i = 0; i < modules.size(); i++) {
-            Module module = modules.get(i);
-            int buttonY = yOffset + (i * (MODULE_ITEM_HEIGHT + SPACING));
-            int itemX = panelX + PADDING;
-            int itemWidth = PANEL_WIDTH - PADDING * 2;
+        for (Module module : modules) {
+            int col = moduleCount % GRID_COLS;
+            int row = moduleCount / GRID_COLS;
 
-            if (buttonY + MODULE_ITEM_HEIGHT < startY || buttonY > startY + maxHeight) {
+            int boxX = mainX + 15 + (col * (MODULE_BOX_SIZE + MODULE_BOX_SPACING));
+            int boxY = yOffset + (row * (MODULE_BOX_SIZE + MODULE_BOX_SPACING));
+
+            if (boxY + MODULE_BOX_SIZE < gridStartY || boxY > gridStartY + gridMaxHeight) {
+                moduleCount++;
                 continue;
             }
 
-            if (mouseX >= itemX && mouseX < itemX + itemWidth &&
-                    mouseY >= buttonY && mouseY < buttonY + MODULE_ITEM_HEIGHT) {
+            if (mouseX >= boxX && mouseX < boxX + MODULE_BOX_SIZE &&
+                    mouseY >= boxY && mouseY < boxY + MODULE_BOX_SIZE) {
                 if (mouseButton == 0) {
                     module.toggle();
                 }
             }
+
+            moduleCount++;
         }
 
         super.mouseClicked(mouseX, mouseY, mouseButton);
@@ -360,7 +298,7 @@ public class ModuleGuiScreen extends GuiScreen {
 
         int dwheel = org.lwjgl.input.Mouse.getEventDWheel();
         if (dwheel != 0) {
-            scrollOffset += dwheel > 0 ? -10 : 10;
+            scrollOffset += dwheel > 0 ? -15 : 15;
             scrollOffset = Math.max(0, scrollOffset);
         }
     }
@@ -381,22 +319,5 @@ public class ModuleGuiScreen extends GuiScreen {
     public boolean doesGuiPauseGame() {
         return false;
     }
-
-    private static class ModuleButton extends GuiButton {
-        private Module module;
-
-        public ModuleButton(int buttonId, int x, int y, int width, int height, Module module) {
-            super(buttonId, x, y, width, height, "");
-            this.module = module;
-        }
-
-        @Override
-        public void drawButton(net.minecraft.client.Minecraft mc, int mouseX, int mouseY) {
-            // Не используется, рисуем через drawModuleItem
-        }
-
-        public void toggleModule() {
-            module.toggle();
-        }
-    }
 }
+

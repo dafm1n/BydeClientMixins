@@ -1,77 +1,68 @@
-[18:10:01] [main/INFO]: Extra: [--tweakClass, instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker]
-[18:10:01] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, /Users/vova/.gradle/caches/minecraft/assets, --assetIndex, 1.8, --accessToken{REDACTED}, --version, 1.8.9, --tweakClass, instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker]
-[18:10:01] [main/INFO]: Loading tweak class name instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker
-[18:10:01] [main/INFO]: Using primary tweak class name instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker
-[18:10:01] [main/INFO]: Calling tweak class instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker
-[18:10:01] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.7.11 Source=file:/Users/vova/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.7.11-SNAPSHOT/7a670207bdb97db418118ad1e9bb42424ff3776d/mixin-0.7.11-SNAPSHOT.jar Service=LaunchWrapper Env=UNKNOWN
-[18:10:01] [main/INFO]: FML platform manager could not load class cpw.mods.fml.relauncher.CoreModManager. Proceeding without FML support.
-[18:10:01] [main/INFO]: Compatibility level set to JAVA_8
-[18:10:01] [main/INFO]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
-[18:10:01] [main/INFO]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
-[18:10:01] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinRender, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinRender
-[18:10:01] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinGuiIngame, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinGuiIngame
-[18:10:01] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinGuiChat, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinGuiChat
-[18:10:01] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinMinecraft, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinMinecraft
-[18:10:01] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinMinecraftShutdown, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinMinecraftShutdown
-[18:10:01] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
-[18:10:04] [Client thread/INFO]: Setting user: Player556
-[18:10:04] [Client thread/INFO]: (Session ID is token:FML:Player556)
-[18:10:06] [Client thread/INFO]: LWJGL Version: 2.9.2
-[18:10:07] [Client thread/INFO]: Reloading ResourceManager: Default
-[18:10:07] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[18:10:07] [Thread-7/INFO]: Initializing LWJGL OpenAL
-[18:10:07] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[18:10:09] [Thread-7/INFO]: OpenAL initialized.
-[18:10:09] [Sound Library Loader/INFO]: Sound engine started
-[18:10:09] [Client thread/INFO]: Created: 512x512 textures-atlas
-[18:10:15] [Server thread/INFO]: Starting integrated minecraft server version 1.8.9
-[18:10:15] [Server thread/INFO]: Generating keypair
-[18:10:16] [Server thread/INFO]: Preparing start region for level 0
-[18:10:17] [Server thread/INFO]: Changing view distance to 6, from 10
-[18:10:17] [Server thread/INFO]: Player556[local:E:a06b18d3] logged in with entity id 261 at (379.3264737407074, 66.0, 51.37901253639089)
-[18:10:17] [Server thread/INFO]: Player556 joined the game
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:18] [Client thread/WARN]: Biome ID is out of bounds: 259, defaulting to 0 (Ocean)
-[18:10:20] [Server thread/INFO]: Player556 has just earned the achievement [Taking Inventory]
-[18:10:20] [Client thread/INFO]: [CHAT] Player556 has just earned the achievement [Taking Inventory]
-[18:10:26] [Client thread/INFO]: [CHAT] Usage: /effect <player> <effect> [seconds] [amplifier] [hideParticles] OR /effect <player> clear
-[18:10:30] [Server thread/INFO]: [Player556: Took all effects from Player556]
-[18:10:30] [Client thread/INFO]: [CHAT] Took all effects from Player556
-[18:11:34] [Server thread/INFO]: Saving and pausing game...
-[18:11:34] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:11:34] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:11:34] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:11:37] [Server thread/INFO]: Saving and pausing game...
-[18:11:37] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:11:37] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:11:37] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:18:07] [Server thread/INFO]: Saving and pausing game...
-[18:18:07] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:18:07] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:18:07] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:18:08] [Server thread/INFO]: Stopping server
-[18:18:08] [Server thread/INFO]: Saving players
-[18:18:08] [Server thread/INFO]: Saving worlds
-[18:18:08] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
-[18:18:08] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
-[18:18:08] [Server thread/INFO]: Saving chunks for level 'New World'/The End
-[18:18:12] [Client thread/INFO]: Stopping!
-[18:18:12] [Client thread/INFO]: SoundSystem shutting down...
-[18:18:12] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com
+[18:50:32] [main/INFO]: Extra: [--tweakClass, instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker]
+[18:50:32] [main/INFO]: Running with arguments: [--userProperties, {}, --assetsDir, /Users/vova/.gradle/caches/minecraft/assets, --assetIndex, 1.8, --accessToken{REDACTED}, --version, 1.8.9, --tweakClass, instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker]
+[18:50:32] [main/INFO]: Loading tweak class name instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker
+[18:50:32] [main/INFO]: Using primary tweak class name instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker
+[18:50:32] [main/INFO]: Calling tweak class instance.bydeclient.dev.BydeClient.mixin.mixins.BydeClientTweaker
+[18:50:32] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.7.11 Source=file:/Users/vova/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.7.11-SNAPSHOT/7a670207bdb97db418118ad1e9bb42424ff3776d/mixin-0.7.11-SNAPSHOT.jar Service=LaunchWrapper Env=UNKNOWN
+[18:50:33] [main/INFO]: FML platform manager could not load class cpw.mods.fml.relauncher.CoreModManager. Proceeding without FML support.
+[18:50:33] [main/INFO]: Compatibility level set to JAVA_8
+[18:50:33] [main/INFO]: Loading tweak class name org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[18:50:33] [main/INFO]: Calling tweak class org.spongepowered.asm.mixin.EnvironmentStateTweaker
+[18:50:33] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinRender, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinRender
+[18:50:33] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinGuiIngame, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinGuiIngame
+[18:50:33] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinGuiChat, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinGuiChat
+[18:50:33] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinMinecraft, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinMinecraft
+[18:50:33] [main/ERROR]: Classloader restrictions [PACKAGE_CLASSLOADER_EXCLUSION] encountered loading mixins.bydeclient.json:Mixin.MixinMinecraftShutdown, name: instance.bydeclient.dev.BydeClient.mixin.mixins.Mixin.MixinMinecraftShutdown
+[18:50:33] [main/INFO]: Launching wrapped minecraft {net.minecraft.client.main.Main}
+[18:50:36] [Client thread/INFO]: Setting user: Player8
+[18:50:36] [Client thread/INFO]: (Session ID is token:FML:Player8)
+[18:50:37] [Client thread/INFO]: LWJGL Version: 2.9.2
+[18:50:38] [Client thread/INFO]: Reloading ResourceManager: Default
+[18:50:38] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[18:50:38] [Thread-7/INFO]: Initializing LWJGL OpenAL
+[18:50:38] [Thread-7/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[18:50:39] [Thread-7/INFO]: OpenAL initialized.
+[18:50:39] [Sound Library Loader/INFO]: Sound engine started
+[18:50:39] [Client thread/INFO]: Created: 512x512 textures-atlas
+[18:50:44] [Client thread/WARN]: Unable to start LAN server detection: Can't assign requested address
+[18:50:48] [Server thread/INFO]: Starting integrated minecraft server version 1.8.9
+[18:50:48] [Server thread/INFO]: Generating keypair
+[18:50:49] [Server thread/INFO]: Preparing start region for level 0
+[18:50:50] [Server thread/INFO]: Preparing spawn area: 55%
+[18:50:50] [Server thread/INFO]: Changing view distance to 6, from 10
+[18:50:51] [Server thread/INFO]: Player8[local:E:cd277ee7] logged in with entity id 260 at (430.77223628696345, 83.0, 239.05995196417445)
+[18:50:51] [Server thread/INFO]: Player8 joined the game
+[18:50:51] [Server thread/WARN]: Biome ID is out of bounds: 206635, defaulting to 0 (Ocean)
+[18:52:30] [Server thread/INFO]: Saving and pausing game...
+[18:52:30] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[18:52:30] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[18:52:30] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:52:36] [Server thread/INFO]: Changing view distance to 2, from 6
+[18:52:40] [Server thread/INFO]: Changing view distance to 6, from 2
+[18:52:46] [Server thread/INFO]: Saving and pausing game...
+[18:52:46] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[18:52:46] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[18:52:46] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:52:50] [Server thread/INFO]: Changing view distance to 2, from 6
+[18:53:18] [Client thread/INFO]: [CHAT] Saved screenshot as 2025-11-13_18.53.17.png
+[18:53:46] [Server thread/INFO]: Player8 has just earned the achievement [Taking Inventory]
+[18:53:46] [Client thread/INFO]: [CHAT] Player8 has just earned the achievement [Taking Inventory]
+[18:53:55] [Server thread/INFO]: Saving and pausing game...
+[18:53:55] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[18:53:55] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[18:53:55] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:54:55] [Client thread/INFO]: [CHAT] Saved screenshot as 2025-11-13_18.54.55.png
+[18:55:53] [Server thread/INFO]: Saving and pausing game...
+[18:55:53] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[18:55:53] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[18:55:53] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:55:54] [Server thread/INFO]: Stopping server
+[18:55:54] [Server thread/INFO]: Saving players
+[18:55:54] [Server thread/INFO]: Saving worlds
+[18:55:54] [Server thread/INFO]: Saving chunks for level 'New World'/Overworld
+[18:55:54] [Server thread/INFO]: Saving chunks for level 'New World'/Nether
+[18:55:54] [Server thread/INFO]: Saving chunks for level 'New World'/The End
+[18:55:55] [Client thread/WARN]: Unable to start LAN server detection: Can't assign requested address
+[18:55:57] [Client thread/INFO]: Stopping!
+[18:55:57] [Client thread/INFO]: SoundSystem shutting down...
+[18:55:57] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com

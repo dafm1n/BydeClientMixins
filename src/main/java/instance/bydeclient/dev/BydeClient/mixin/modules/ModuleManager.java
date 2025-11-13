@@ -29,6 +29,7 @@ public class ModuleManager {
     private PlayerCounterModule playerCounterModule;
     private ScoreboardModule scoreboardModule;
     private FPSModule fpsModule;
+    private CPSModule cpsModule;
 
     private ModuleManager() {
         initializeModules();
@@ -59,6 +60,7 @@ public class ModuleManager {
         playerCounterModule = new PlayerCounterModule();
         scoreboardModule = new ScoreboardModule();
         fpsModule = new FPSModule();
+        cpsModule = new CPSModule();
 
         // Добавляем в список
         addModule(keystrokesModule);
@@ -77,6 +79,7 @@ public class ModuleManager {
         addModule(playerCounterModule);
         addModule(scoreboardModule);
         addModule(fpsModule);
+        addModule(cpsModule);
     }
 
     private void addModule(Module module) {
@@ -150,6 +153,10 @@ public class ModuleManager {
 
     public FPSModule getFPSModule() {
         return fpsModule;
+    }
+
+    public CPSModule getCpsModule() {
+        return cpsModule;
     }
 
     public List<Module> getModules() {

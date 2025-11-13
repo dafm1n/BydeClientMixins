@@ -4,7 +4,6 @@ import instance.bydeclient.dev.BydeClient.mixin.modules.*;
 import instance.bydeclient.dev.BydeClient.mixin.utils.PositionManager;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
@@ -21,6 +20,8 @@ public class EditHudScreen extends GuiScreen {
     private KeystrokesModule keystrokesModule;
     private ArmorStatusModule armorStatusModule;
     private PingModule pingModule;
+    private FPSModule fpsModule;
+    private CPSModule cpsModule;
 
     private SelectedElement selectedElement = null;
     private int dragStartX = 0;
@@ -38,6 +39,8 @@ public class EditHudScreen extends GuiScreen {
         this.keystrokesModule = manager.getKeystrokesModule();
         this.armorStatusModule = manager.getArmorStatusModule();
         this.pingModule = manager.getPingModule();
+        this.fpsModule = manager.getFPSModule();
+        this.cpsModule = manager.getCpsModule();
     }
 
     @Override
@@ -76,6 +79,8 @@ public class EditHudScreen extends GuiScreen {
         drawHudElement("Keystrokes", keystrokesModule.getPosX(), keystrokesModule.getPosY(), mouseX, mouseY);
         drawHudElement("ArmorStatus", armorStatusModule.getPosX(), armorStatusModule.getPosY(), mouseX, mouseY);
         drawHudElement("Ping", pingModule.getPosX(), pingModule.getPosY(), mouseX, mouseY);
+        drawHudElement("FPS", fpsModule.getPosX(), fpsModule.getPosY(), mouseX, mouseY);
+        drawHudElement("CPS", cpsModule.getPosX(), cpsModule.getPosY(), mouseX, mouseY);
 
         // Рисуем кнопки
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -182,6 +187,18 @@ public class EditHudScreen extends GuiScreen {
                 dragStartY = mouseY;
                 dragOffsetX = mouseX - selectedElement.x;
                 dragOffsetY = mouseY - selectedElement.y;
+            } else if (isMouseInElement(mouseX, mouseY, fpsModule.getPosX(), fpsModule.getPosY())) {
+                selectedElement = new SelectedElement("FPS", fpsModule.getPosX(), fpsModule.getPosY());
+                dragStartX = mouseX;
+                dragStartY = mouseY;
+                dragOffsetX = mouseX - selectedElement.x;
+                dragOffsetY = mouseY - selectedElement.y;
+            } else if (isMouseInElement(mouseX, mouseY, cpsModule.getPosX(), cpsModule.getPosY())) {
+                selectedElement = new SelectedElement("CPS", cpsModule.getPosX(), cpsModule.getPosY());
+                dragStartX = mouseX;
+                dragStartY = mouseY;
+                dragOffsetX = mouseX - selectedElement.x;
+                dragOffsetY = mouseY - selectedElement.y;
             } else {
                 selectedElement = null;
             }
@@ -215,6 +232,14 @@ public class EditHudScreen extends GuiScreen {
                     pingModule.setPosX(newX);
                     pingModule.setPosY(newY);
                     break;
+                case "FPS":
+                    fpsModule.setPosX(newX);
+                    fpsModule.setPosY(newY);
+                    break;
+                case "CPS":
+                    cpsModule.setPosX(newX);
+                    cpsModule.setPosY(newY);
+                    break;
             }
         }
     }
@@ -232,6 +257,10 @@ public class EditHudScreen extends GuiScreen {
             armorStatusModule.setPosY(40);
             pingModule.setPosX(10);
             pingModule.setPosY(100);
+            fpsModule.setPosX(10);
+            fpsModule.setPosY(130);
+            cpsModule.setPosX(10);
+            cpsModule.setPosY(160);
             selectedElement = null;
         }
     }
